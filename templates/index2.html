@@ -1,0 +1,115 @@
+<!-- Major parts of the code in this file are adapted from the
+following repository:
+https://github.com/puikinsh/concept
+We sincerely thank them in making this code publicly available -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>VIZ4CNN</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='index2.css') }}">
+    <!-- <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link href="{{ url_for('static', filename='vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{ url_for('static', filename='vendor/inputmask/css/inputmask.css') }}" />
+</head>
+
+<body>
+
+  <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+         <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="/">VIZ4CNN</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item">
+                            <div id="custom-search" class="top-search-bar">
+                                <input class="form-control" type="text" placeholder="Search..">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+<br>
+<center><h2>File Upload & Visualisation Selection</h2></center>
+<!-- <p class="lead">No Plugins <b>Just Javascript</b></p> -->
+
+<!-- Upload  -->
+<form id="file-upload-form" class="uploader" method="post" action="/" enctype="multipart/form-data">
+  <input id="file-upload" type="file" name="file" accept="image/*" />
+  <div class="card">
+    <div class="card-body border-top">
+      <h5>Choose type of visualisation</h5>
+      <label class="custom-control custom-radio custom-control-inline">
+          <input type="radio" name="radio-inline" checked="" class="custom-control-input" value="saliency"><span class="custom-control-label">Auto-focus</span>
+      </label>
+      <label class="custom-control custom-radio custom-control-inline">
+          <input type="radio" name="radio-inline" class="custom-control-input" value="gradcam"><span class="custom-control-label">Auto-crop</span>
+      </label>
+      <label class="custom-control custom-radio custom-control-inline">
+          <input type="radio" name="radio-inline" class="custom-control-input" value="wtviz"><span class="custom-control-label">Weight Visualisation</span>
+          <select class="form-control" id="input-select" name="layer-select">
+            <option value="0">Layer 0 - Conv2d</option>
+            <option value="1">Layer 1 - ReLU</option>
+            <option value="2">Layer 2 - MaxPool2d</option>
+            <option value="3">Layer 3 - Conv2d</option>
+            <option value="4">Layer 4 - ReLU</option>
+            <option value="5">Layer 5 - MaxPool2d</option>
+            <option value="6">Layer 6 - Conv2d</option>
+            <option value="7">Layer 7 - ReLU</option>
+            <option value="8">Layer 8 - Conv2d</option>
+            <option value="9">Layer 9 - ReLU</option>
+            <option value="10">Layer 10 - Conv2d</option>
+            <option value="11">Layer 11 - ReLU</option>
+            <option value="12">Layer 12 - MaxPool2d</option>
+          </select>                              
+      </label>
+
+    </div>
+  </div>
+
+  <label for="file-upload" id="file-drag">
+    <img id="file-image" src="#" alt="Preview" class="hidden">
+    <div id="start">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      <div>Select a file or drag here</div>
+      <div id="notimage" class="hidden">Please select an image</div>
+      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+    </div>
+    <div id="response" class="hidden">
+      <div id="messages"></div>
+      <progress class="progress" id="file-progress" value="100">
+        <span>100</span>%
+      </progress>
+      <!-- <span id="file-upload-btn" class="btn btn-primary">Select a file</span> -->
+      <p>
+        <!-- <span id="file-upload-btn" class="btn btn-primary"> -->
+      <input type="submit" value="Submit" class="btn btn-primary" method="post" action="/">
+        <!-- </span> -->
+      </p>
+    </div>
+  </label>
+</form>
+
+<script src="{{ url_for('static', filename='index2.js') }}"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</body>
+
+</html>
